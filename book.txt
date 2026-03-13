@@ -1,0 +1,5 @@
+science,parbat,12
+social,sohan,239
+nepali,rahul,329
+computer,laxman,234
+science,parbat,120
