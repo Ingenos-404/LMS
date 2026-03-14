@@ -17,6 +17,9 @@
 #  Exit : End the program.
 
 
+#================ Add New Book =================
+
+
 def addnew_book():
     b_name = input("Enter the book name: ")
     author = input("Enter the author name: ")
@@ -26,6 +29,7 @@ def addnew_book():
         f.write(b_name + "," + author + "," + quantity + "\n")
         print("Details added successfully!")
         return
+#============== Add quantity or fill stock ========
 
 def addex_book():
     try:
@@ -53,6 +57,7 @@ def addex_book():
     except FileNotFoundError:
         print("Book not found")
 
+#=========view list of books===============
 
 def view_book():
     try:
@@ -69,6 +74,8 @@ def view_book():
                 print()
     except FileNotFoundError:
         print("File not found")
+
+#============search book=====================
 
 def search_book():
     try:
@@ -90,6 +97,8 @@ def search_book():
     except FileNotFoundError:
         print("Records not found")
         
+#============== Issue book ===================
+
 def issue_book():
     try:
         issue = input("Enter the book name: ")
@@ -115,6 +124,8 @@ def issue_book():
                 f.write(f"{b_name},{author},{quantity}\n")
     except FileNotFoundError:
         print("Book not found")
+
+#============ return book ====================
 
 def return_book():
     try:
