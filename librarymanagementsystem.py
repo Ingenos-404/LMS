@@ -17,14 +17,42 @@
 #  Exit : End the program.
 
 
-def add_book():
+def addnew_book():
     b_name = input("Enter the book name: ")
     author = input("Enter the author name: ")
-    quantity = input("Enter the quantity of books: ")x
+    quantity = input("Enter the quantity of books: ")
 
     with open ("book.txt", "a") as f:
         f.write(b_name + "," + author + "," + quantity + "\n")
         print("Details added successfully!")
+        return
+
+def addex_book():
+    try:
+        add_ex = input("Enter the book name: ")
+
+        with open("book.txt", "r") as f:
+            data = f.readlines()
+
+        with open("book.txt", "w") as f:
+            if not data:
+                print("Books not found")
+                return
+
+            found = False
+            for line in data:
+                b_name, author, quantity = line.strip().split(",")
+                quantity = int(quantity)
+                if b_name.lower() == add_ex.lower():
+                        x = int(input("Enter the book quantity to add: "))
+                        quantity = x + quantity
+                        print("Book issued successfully!")
+                else:
+                        print("Book out of stock")
+                f.write(f"{b_name},{author},{quantity}\n")
+    except FileNotFoundError:
+        print("Book not found")
+
 
 def view_book():
     try:
@@ -84,11 +112,9 @@ def issue_book():
                         print("Book issued successfully!")
                     else:
                         print("Book out of stock")
-                    found = True
-                    print(f"Book Name: {b_name}, Author: {author}, Quantity: {quantity}")
-            f.write(f"{b_name},{author},{quantity}\n")
+                f.write(f"{b_name},{author},{quantity}\n")
     except FileNotFoundError:
-        print(object(s), separator=separator, end=end, file=file, flush=flush)
+        print("Book not found")
 
 def return_book():
     try:
@@ -117,25 +143,28 @@ def return_book():
 
 while True:
     print("\n====Library Management System====\n")
-    print("1. Add Book")
-    print("2. View Book")
-    print("3. Search Book")
-    print("4. Issue Book")
-    print("5. Return Book")
-    print("6. Exit")
+    print("1. Add New Book")
+    print("2. Add Existing Book")
+    print("3. View Book")
+    print("4. Search Book")
+    print("5. Issue Book")
+    print("6. Return Book")
+    print("7. Exit")
     choice = input("Enter the choice: ")
 
     if(choice=="1"):
-        add_book()
+        addnew_book()
     elif(choice=="2"):
-        view_book()
+        addex_book()
     elif(choice=="3"):
-        search_book()
+        view_book()
     elif(choice=="4"):
-        issue_book()
+        search_book()
     elif(choice=="5"):
-        return_book()
+        issue_book()
     elif(choice=="6"):
+        return_book()
+    elif(choice=="7"):
         print("See You Later!")
         break
     else:
